@@ -36,7 +36,19 @@ class App  extends Component {
             <br/>
             <ErrorMessage name="category" />
             <br/>
-
+             <label>Facebook</label>
+            <Field name="social.facebook" /> 
+            <ErrorMessage name="social.facebook" />
+            <br/>
+            <label>Twitter </label>
+            <Field name="social.twitter" /> 
+            <ErrorMessage name="social.twitter" />
+            <br/>
+              <label>LinkedIn </label>
+            <Field name="social.linkedin" /> 
+            <ErrorMessage name="social.linkedin" />
+            <br/>
+            
             <button type="submit">Send</button>
        </form>
      )
@@ -48,6 +60,11 @@ class App  extends Component {
         email : Yup.string().required(),
         situation : Yup.string().required(),
         category : Yup.string().required(),
+        social : Yup.object().shape({
+          facebook : Yup.string().required('Facebook link is required field'),
+          twitter : Yup.string().required('Twitter link is required field'),
+          linkedin : Yup.string().required('Linkedin link is required field')
+        })
       });
       return schema ;
   }
@@ -57,7 +74,15 @@ class App  extends Component {
     return (
       <div>
            <Formik 
-             initialValues={{ name : '' , email : '' , situation : 'true' , category : ''}} 
+             initialValues={{ name : '' ,
+              email : '' , 
+              situation : 'true' ,
+              category : '' , 
+              social : {
+                 facebook : '' ,
+                 twitter : '' ,
+                 linkedin : '',
+             }}} 
              onSubmit={this.onSubmitFunction}
              render={this.formFunction}
              validationSchema = {this.schema()}
