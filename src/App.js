@@ -44,7 +44,7 @@ class App  extends Component {
             <Field name="social.twitter" /> 
             <ErrorMessage name="social.twitter" />
             <br/>
-             
+             <h3>Friends </h3>
             <FieldArray 
                name="friends"
                render ={arrayHelpers => (
@@ -66,10 +66,37 @@ class App  extends Component {
                )
 
                }
-            
             />
-              
-            
+            <br />
+            <hr />
+            <h3>Profil Of Users  </h3>
+            <FieldArray 
+               name="profilUsers"
+               render ={arrayHelpers => (
+                <div>
+                       {props.values.profilUsers.map((user , index) => (
+                         <div key={index}>
+                              <Field name={`profilUsers[${index}].firstName`} placeholder='First Name' />
+                              <ErrorMessage name={`profilUsers.${index}].firstName`} />
+                              <Field name={`profilUsers[${index}].lastName`} placeholder='Last Name' />
+                              <ErrorMessage name={`profilUsers.${index}.lastName`} />
+                              <Field name={`profilUsers[${index}].Age`} placeholder='Age' />
+                              <ErrorMessage name={`profilUsers.${index}.Age`} />
+                              <button type="button" onClick={() => {arrayHelpers.remove(index)}}>Remove </button>
+                              <ErrorMessage name={`profilUsers.${index}`} />
+                             
+                         </div>
+                         
+                       )) 
+                        
+                       }
+                        <button type="button" onClick={()=> arrayHelpers.push({firstName : '' , lastName : '' , Age : ''})}>Add</button>
+                </div>
+
+               )
+
+               }
+            />
             
             <button type="submit"> Send </button>
        </form>
@@ -89,7 +116,9 @@ class App  extends Component {
         }),
         friends : Yup.array().of(
            Yup.string().required()
-        )
+        ) ,
+      
+       
         
       });
       return schema ;
@@ -109,8 +138,12 @@ class App  extends Component {
                  twitter : '' ,
                 
              } ,
-             friends : ['yazid' , 'adem'] 
-            }} 
+             friends : ['yazid' , 'adem'] ,
+             profilUsers : [
+              { firstName : "qsdqsdqsd" , lastName : "qsdqsdqsd" , Age : '42'} ,
+             
+             ]
+            } } 
              onSubmit={this.onSubmitFunction}
              render={this.formFunction}
              validationSchema = {this.schema()}
