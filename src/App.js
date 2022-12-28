@@ -52,11 +52,17 @@ class App  extends Component {
                        {props.values.friends.map((friend , index) => (
                          <div key={index}>
                               <Field name={`friends.${index}`} />
+                              <button type="button" onClick={() => {arrayHelpers.remove(index)}}>Remove </button>
+                              <ErrorMessage name={`friends.${index}`} />
+                             
                          </div>
+                         
                        )) 
                         
                        }
+                        <button type="button" onClick={()=> {arrayHelpers.push('')}}>Add</button>
                 </div>
+
                )
 
                }
@@ -81,7 +87,9 @@ class App  extends Component {
           twitter : Yup.string().required('Twitter link is required field'),
         
         }),
-        
+        friends : Yup.array().of(
+           Yup.string().required()
+        )
         
       });
       return schema ;
