@@ -1,6 +1,7 @@
 import React , {Component} from "react";
 import { Formik , Field , ErrorMessage , FieldArray } from "formik";
 import * as Yup from 'yup';
+import DynamicClassStyle from './components/DynamicClassStyle';
 
 class App  extends Component {
      
@@ -149,7 +150,9 @@ class App  extends Component {
              validationSchema = {this.schema()}
            />
             
-           
+           <DynamicClassStyle />
+            
+          
       </div>
     )
      
