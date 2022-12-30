@@ -1,35 +1,17 @@
 import React , {Component} from "react";
 import './style.css';
+import classNames from "classnames";
 
 class DynamicClassStyle  extends Component {
       
      
      render () {
-          // Using method of string 
-          let classes  =  '';
-          if (true) {
-             classes += 'greenBackGound ';   
-          }
-          if(true){
-             classes += 'redBackGound ';
-          }
-          if(true){
-             classes += 'colorText ' ;
-          }
-          // Using method of Array 
-         let classesArray = [] ;
-         if (true) {
-          classesArray.push('greenBackGound')
-         }
-         if(true){
-          classesArray.push('redBackGound')
-         }
-         if(true){
-          classesArray.push('colorText')
-         }
+          let classes = classNames({ greenBackGound : true , redBackGound : 1 > 2  , colorText : true })
+         
+     
         return (
 
-           <div className={classesArray.join(' ')}>
+           <div className={classes}>
                  This is Test TEXT 
            </div>
         )
