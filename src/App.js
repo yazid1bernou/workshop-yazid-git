@@ -2,6 +2,7 @@ import React , {Component} from "react";
 import { Formik , Field , ErrorMessage , FieldArray } from "formik";
 import * as Yup from 'yup';
 import DynamicClassStyle from './components/DynamicClassStyle';
+import AxiosGetAPI  from "./components/AxiosGetAPI";
 
 class App  extends Component {
      
@@ -151,7 +152,8 @@ class App  extends Component {
            />
             
            <DynamicClassStyle />
-            
+           <AxiosGetAPI />
+           
           
       </div>
     )
